@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} 
+
+{% block content %}
+    <form class="ui form" action="/add" method="POST">
+        <div class="field">
+            <label for="title">Todo Title</label>
+            <input type="text" name="title" placeholder="Enter Todo...">
+            <br>
+            <button class="ui blue button" type="submit">Add</button>
+        </div>
+    </form>
+
+    {% for note in user.notes %} <!-- for cyklus pro kazde todo v seznamu -->
+    <div class="ui segment">
+        <p class="ui big header"> {{ note.id }} | {{ note.data }}</p>
+        
+        {% if note.complete == False %}
+            <span class="ui gray label">Not completed</span>
+        {% else %}
+            <span class="ui green label">Completed</span>
+        {% endif %}
+
+        <a class="ui blue button" href="/update/{{ note.id }}">Update status</a>
+        <a class="ui red button" href="/delete/{{ note.id }}">Delete</a>
+    </div>
+        
+    {% endfor %} 
+    
+        
+{% endblock %}
+
+    

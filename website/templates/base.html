@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"> <!--graficke zobrazeni z webu-->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--styles from semantic ui-->
+
+    <title>{% block title %}Home{% endblock %}</title>
+
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <div class="ui three item menu">
+                <a class="item" id="home" href="/"> Home </a>
+                <a class="active item" id="user" > {{ user.first_name }}<br>{{ user.email }} </a>
+                <a class="item" id="logout" href="/logout"> Logout </a>
+            </div>
+        {% else %}
+            <div class="ui two item menu">
+                <a class="item" id="login" href="/login"> Login </a>
+                <a class="item" id="signUp" href="/sign_up"> Sign Up </a>
+            </div>
+        {% endif %}
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <div class="ui negative message">
+            {{ message }}
+        </div>
+        {% else %}
+        <div class="ui positive message">
+            {{ message }}
+        </div>
+        {% endif %}
+    
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div style="margin: 50px" class="ui container">
+        <h1 class="ui center aligned header">Todo App</h1>
+
+        {% block content %}
+    {% endblock %}
+</body>
+</html>

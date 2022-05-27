@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+
+{% block title %}Sign up{% endblock %} 
+
+{% block content %}
+<form class="ui form" method="POST">
+    <h3 align="left">Sign up</h3>
+    <div class="field">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Zadejte email">
+        <label for="firstName">Jméno</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Zadejte Vaše jméno">
+        <label for="secondName">Příjmení</label>
+        <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Zadejte Vaše příjmení">
+        <label for="password1">Heslo</label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Zadejte heslo">
+        <label for="password2">Znovu heslo</label>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Potvrďte heslo">
+    </div>
+    <br>
+    <button type="submit" class="ui blue button">Odeslat</button>
+    
+</form>
+
+
+
+{% endblock %}
